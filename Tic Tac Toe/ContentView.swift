@@ -13,6 +13,8 @@ struct ContentView: View {
     
     @State private var isFirstUser: Bool = true
     @State private var picked: [String] = Array(repeating: "", count: 9)
+    @State private var winnerExisting: Bool = false
+    @State private var winner: Player = .none
     
     // MARK: - BODY
     
@@ -31,9 +33,11 @@ struct ContentView: View {
                             
                             Button(action: {
                                 self.cellDidTapped(at: hIndex)
+                                self.checkWin()
                             }, label: {
                                 Text(picked[hIndex])
                                     .foregroundColor(.black)
+                                    .font(.system(size: 40, weight: .heavy, design: .default))
                                     .frame(width: getWidth(), height: getWidth())
                                     .background(Color.white)
                                     .cornerRadius(16)
@@ -47,9 +51,11 @@ struct ContentView: View {
                             
                             Button(action: {
                                 self.cellDidTapped(at: hIndex)
+                                self.checkWin()
                             }, label: {
                                 Text(picked[hIndex])
                                     .foregroundColor(.black)
+                                    .font(.system(size: 40, weight: .heavy, design: .default))
                                     .frame(width: getWidth(), height: getWidth())
                                     .background(Color.white)
                                     .cornerRadius(16)
@@ -63,9 +69,11 @@ struct ContentView: View {
                             
                             Button(action: {
                                 self.cellDidTapped(at: hIndex)
+                                self.checkWin()
                             }, label: {
                                 Text(picked[hIndex])
                                     .foregroundColor(.black)
+                                    .font(.system(size: 40, weight: .heavy, design: .default))
                                     .frame(width: getWidth(), height: getWidth())
                                     .background(Color.white)
                                     .cornerRadius(16)
@@ -75,6 +83,11 @@ struct ContentView: View {
                     } //: H
                 } //: V
                 .padding(16)
+            }
+            
+            if winnerExisting {
+                Text("WIN! \(winner.rawValue)")
+                    .foregroundColor(.red)
             }
         } //: Z
     }
@@ -104,6 +117,21 @@ extension ContentView {
         self.isFirstUser.toggle()
     }
     
+    private func checkWin() {
+        let rows = self.picked.chunked(into: 3)
+        
+        // ROWS CHECK
+        for row in rows {
+            if row.dropLast().allSatisfy({ $0 == row.last }) && !row.contains("") {
+                self.winner = row[0] == Player.firstPlayer.rawValue ? .firstPlayer : .secondPlayer
+                self.winnerExisting = true
+            }
+        }
+        
+        // COLUMNS CHECK
+        
+    }
+    
 }
 
 extension ContentView {
@@ -111,8 +139,17 @@ extension ContentView {
     private enum Player: String {
         case firstPlayer = "O"
         case secondPlayer = "X"
+        case none
     }
     
+}
+
+extension Array {
+    func chunked(into size: Int) -> [[Element]] {
+        return stride(from: 0, to: count, by: size).map {
+            Array(self[$0..<Swift.min($0 + size, count)])
+        }
+    }
 }
 
 struct ContentView_Previews: PreviewProvider {
