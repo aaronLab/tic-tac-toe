@@ -12,6 +12,7 @@ struct ContentView: View {
     // MARK: - PROPERTIES
     
     @State private var isFirstUser: Bool = true
+    @State private var picked: [String] = Array(repeating: "", count: 9)
     
     // MARK: - BODY
     
@@ -22,16 +23,16 @@ struct ContentView: View {
             Color.black
                 .edgesIgnoringSafeArea(.all)
             
-            ForEach(1...3, id: \.self) { vIndex in
+            ForEach(0...2, id: \.self) { vIndex in
                 VStack(alignment: .center, spacing: 16) {
                     
                     HStack(alignment: .center, spacing: 16) {
-                        ForEach(1...3, id: \.self) { hIndex in
+                        ForEach(0...2, id: \.self) { hIndex in
                             
                             Button(action: {
                                 
                             }, label: {
-                                Text("")
+                                Text(picked[hIndex])
                                     .foregroundColor(.black)
                                     .frame(width: getWidth(), height: getWidth())
                                     .background(Color.white)
@@ -41,12 +42,12 @@ struct ContentView: View {
                     } //: H
                     
                     HStack(alignment: .center, spacing: 16) {
-                        ForEach(4...6, id: \.self) { hIndex in
+                        ForEach(3...5, id: \.self) { hIndex in
                             
                             Button(action: {
                                 
                             }, label: {
-                                Text("")
+                                Text(picked[hIndex])
                                     .foregroundColor(.black)
                                     .frame(width: getWidth(), height: getWidth())
                                     .background(Color.white)
@@ -56,12 +57,12 @@ struct ContentView: View {
                     } //: H
                     
                     HStack(alignment: .center, spacing: 16) {
-                        ForEach(7...9, id: \.self) { hIndex in
+                        ForEach(6...8, id: \.self) { hIndex in
                             
                             Button(action: {
                                 
                             }, label: {
-                                Text("")
+                                Text(picked[hIndex])
                                     .foregroundColor(.black)
                                     .frame(width: getWidth(), height: getWidth())
                                     .background(Color.white)
@@ -81,10 +82,12 @@ struct ContentView: View {
 // MARK: - METHODS
 
 extension ContentView {
-    func getWidth() -> CGFloat {
+    
+    private func getWidth() -> CGFloat {
         let screenWidth = UIScreen.main.bounds.width
         return (screenWidth - (16 * 4)) / 3
     }
+    
 }
 
 struct ContentView_Previews: PreviewProvider {
