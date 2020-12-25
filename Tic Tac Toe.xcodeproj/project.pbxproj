@@ -11,6 +11,7 @@
 		A46AD6B82595B4020099E822 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A46AD6B72595B4020099E822 /* ContentView.swift */; };
 		A46AD6BA2595B4030099E822 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A46AD6B92595B4030099E822 /* Assets.xcassets */; };
 		A46AD6BD2595B4030099E822 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A46AD6BC2595B4030099E822 /* Preview Assets.xcassets */; };
+		A46AD6C62595B4DD0099E822 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = A46AD6C52595B4DD0099E822 /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +21,7 @@
 		A46AD6B92595B4030099E822 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A46AD6BC2595B4030099E822 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		A46AD6BE2595B4030099E822 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A46AD6C52595B4DD0099E822 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -36,6 +38,7 @@
 		A46AD6A92595B4020099E822 = {
 			isa = PBXGroup;
 			children = (
+				A46AD6C52595B4DD0099E822 /* README.md */,
 				A46AD6B42595B4020099E822 /* Tic Tac Toe */,
 				A46AD6B32595B4020099E822 /* Products */,
 			);
@@ -126,6 +129,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A46AD6C62595B4DD0099E822 /* README.md in Resources */,
 				A46AD6BD2595B4030099E822 /* Preview Assets.xcassets in Resources */,
 				A46AD6BA2595B4030099E822 /* Assets.xcassets in Resources */,
 			);
