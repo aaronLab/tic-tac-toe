@@ -129,6 +129,33 @@ extension ContentView {
         }
         
         // COLUMNS CHECK
+        for rowIndex in 0..<rows.count {
+            let column = rows.getColumn(column: rowIndex)
+            
+            if column.dropLast().allSatisfy({ $0 == column.last }) && !column.contains("") {
+                self.winner = column[0] == Player.firstPlayer.rawValue ? .firstPlayer : .secondPlayer
+                self.winnerExisting = true
+            }
+        }
+        
+        // DIAG CHECK
+        var firstDiag = [String]()
+        var secondDiag = [String]()
+        
+        for rowIndex in 0..<rows.count {
+            firstDiag.append(rows[rowIndex][rowIndex])
+            secondDiag.append(rows[rowIndex].reversed()[rowIndex])
+        }
+        
+        if firstDiag.dropLast().allSatisfy({ $0 == firstDiag.last }) && !firstDiag.contains("") {
+            self.winner = firstDiag[0] == Player.firstPlayer.rawValue ? .firstPlayer : .secondPlayer
+            self.winnerExisting = true
+        }
+        
+        if secondDiag.dropLast().allSatisfy({ $0 == secondDiag.last }) && !secondDiag.contains("") {
+            self.winner = secondDiag[0] == Player.firstPlayer.rawValue ? .firstPlayer : .secondPlayer
+            self.winnerExisting = true
+        }
         
     }
     
@@ -149,6 +176,12 @@ extension Array {
         return stride(from: 0, to: count, by: size).map {
             Array(self[$0..<Swift.min($0 + size, count)])
         }
+    }
+}
+
+extension Array where Element : Collection {
+    func getColumn(column : Element.Index) -> [ Element.Iterator.Element ] {
+        return self.map { $0[ column ] }
     }
 }
 
