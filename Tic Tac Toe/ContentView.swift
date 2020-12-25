@@ -30,7 +30,7 @@ struct ContentView: View {
                         ForEach(0...2, id: \.self) { hIndex in
                             
                             Button(action: {
-                                
+                                self.cellDidTapped(at: hIndex)
                             }, label: {
                                 Text(picked[hIndex])
                                     .foregroundColor(.black)
@@ -38,6 +38,7 @@ struct ContentView: View {
                                     .background(Color.white)
                                     .cornerRadius(16)
                             })
+                            .disabled(!self.isAvailableCell(at: hIndex))
                         }
                     } //: H
                     
@@ -45,7 +46,7 @@ struct ContentView: View {
                         ForEach(3...5, id: \.self) { hIndex in
                             
                             Button(action: {
-                                
+                                self.cellDidTapped(at: hIndex)
                             }, label: {
                                 Text(picked[hIndex])
                                     .foregroundColor(.black)
@@ -53,6 +54,7 @@ struct ContentView: View {
                                     .background(Color.white)
                                     .cornerRadius(16)
                             })
+                            .disabled(!self.isAvailableCell(at: hIndex))
                         }
                     } //: H
                     
@@ -60,7 +62,7 @@ struct ContentView: View {
                         ForEach(6...8, id: \.self) { hIndex in
                             
                             Button(action: {
-                                
+                                self.cellDidTapped(at: hIndex)
                             }, label: {
                                 Text(picked[hIndex])
                                     .foregroundColor(.black)
@@ -68,6 +70,7 @@ struct ContentView: View {
                                     .background(Color.white)
                                     .cornerRadius(16)
                             })
+                            .disabled(!self.isAvailableCell(at: hIndex))
                         }
                     } //: H
                 } //: V
@@ -86,6 +89,28 @@ extension ContentView {
     private func getWidth() -> CGFloat {
         let screenWidth = UIScreen.main.bounds.width
         return (screenWidth - (16 * 4)) / 3
+    }
+    
+    private func isAvailableCell(at index: Int) -> Bool {
+        return self.picked[index] == ""
+    }
+    
+    private func cellDidTapped(at index: Int) {
+        if isFirstUser {
+            self.picked[index] = Player.firstPlayer.rawValue
+        } else {
+            self.picked[index] = Player.secondPlayer.rawValue
+        }
+        self.isFirstUser.toggle()
+    }
+    
+}
+
+extension ContentView {
+    
+    private enum Player: String {
+        case firstPlayer = "O"
+        case secondPlayer = "X"
     }
     
 }
